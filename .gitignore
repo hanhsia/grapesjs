@@ -3,6 +3,7 @@
 .sass-cache/
 .project
 .idea
+.worktrees/
 npm-debug.log*
 yarn-error.log
 package-lock.json
