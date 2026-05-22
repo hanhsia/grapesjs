@@ -1,15 +1,16 @@
 import en from './locale/en';
+import zh from './locale/zh';
 
 export interface I18nConfig {
   /**
    * Locale value.
-   * @default 'en'
+   * @default 'zh'
    */
   locale?: string;
 
   /**
    * Fallback locale.
-   * @default 'en'
+   * @default 'zh'
    */
   localeFallback?: string;
 
@@ -27,7 +28,7 @@ export interface I18nConfig {
 
   /**
    * Messages to translate.
-   * @default { en: {...} }
+   * @default { en: {...}, zh: {...} }
    */
   messages?: Record<string, any>;
 
@@ -38,11 +39,11 @@ export interface I18nConfig {
 }
 
 const config: () => I18nConfig = () => ({
-  locale: 'en',
-  localeFallback: 'en',
+  locale: 'zh',
+  localeFallback: 'zh',
   detectLocale: true,
   debug: false,
-  messages: { en },
+  messages: { en, zh },
   messagesAdd: undefined,
 });
 

@@ -30,6 +30,15 @@ describe('I18n', () => {
       expect(obj.getLocale()).toBeTruthy();
     });
 
+    test('Defaults to Chinese locale and fallback when locale detection is disabled', () => {
+      obj = newModuleWithConfig({
+        detectLocale: false,
+      });
+      expect(obj.getLocale()).toBe('zh');
+      expect(obj.getConfig().localeFallback).toBe('zh');
+      expect(Object.keys(obj.getMessages())).toEqual(expect.arrayContaining(['en', 'zh']));
+    });
+
     test('Init with config', () => {
       const locale = 'it';
       const localeFallback = 'it';
@@ -47,11 +56,11 @@ describe('I18n', () => {
       expect(obj.getLocale()).toBe(locale);
     });
 
-    test('English always imported', () => {
+    test('Default languages always imported', () => {
       obj = newModuleWithConfig({
         messages: { it: {} },
       });
-      expect(Object.keys(obj.getMessages())).toEqual(['en', 'it']);
+      expect(Object.keys(obj.getMessages())).toEqual(['en', 'zh', 'it']);
     });
 
     test('setLocale and getLocale methods', () => {
@@ -170,10 +179,14 @@ describe('I18n', () => {
 
     test('Translate method with fallback locale', () => {
       const msg1 = 'Msg en';
-      obj.setLocale('it');
-      obj.setMessages({
-        en: { msg1 },
-        it: {},
+      obj = newModuleWithConfig({
+        locale: 'it',
+        localeFallback: 'en',
+        detectLocale: false,
+        messages: {
+          en: { msg1 },
+          it: {},
+        },
       });
       expect(obj.t('msg1')).toBe(msg1);
     });
