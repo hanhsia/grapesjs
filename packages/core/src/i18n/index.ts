@@ -3,8 +3,8 @@
  * ```js
  * const editor = grapesjs.init({
  *  i18n: {
- *    locale: 'en',
- *    localeFallback: 'en',
+ *    locale: 'zh',
+ *    localeFallback: 'zh',
  *    messages: {
  *      it: { hello: 'Ciao', ... },
  *      ...
